@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import cors from 'cors';
 
 
 import * as userRoutes from '../routes/usuario';    // Si hay más exportaciones en el archivo indicado
@@ -17,10 +18,27 @@ class Server {
 
         this.app  = express();
         this.port = process.env.PORT || '8080';
+        
+        // Middlewares
+        this.middlewares();
 
         // Definir las rutas
         this.routes();
 
+    }
+
+    // TODO: Conectar base de datos
+
+    middlewares(){
+
+        // CORS
+        this.app.use( cors() );
+
+        // Lectura del body
+        this.app.use( express.json() );
+
+        // Carpeta publica
+        this.app.use( express.static('public') );
     }
 
     routes(){
