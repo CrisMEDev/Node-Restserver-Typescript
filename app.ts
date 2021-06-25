@@ -1,6 +1,13 @@
+import dotenv from 'dotenv';
+import Server from './models/server';
 
-export const nombre = 'Cristian';
+dotenv.config();    // Leer la config del archivo .env
 
-console.log(nombre);
+
+
+const server = new Server();
+
+
+server.listen();
 
 
