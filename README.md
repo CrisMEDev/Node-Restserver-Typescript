@@ -24,6 +24,8 @@ Finalizando... crear el archivo de configuración de tslint ejecutando ```./node
 
 Para habilitar los tipados con cada paquete, instalar las dependencias de desarrollo requeridas. Ej: ```npm i --save-dev @types/express```
 
+No olvidar instalar el controlador de tu DB con ```npm install --save mariadb``` según sea el caso de la base de datos utilizada.
+
 ### Documentación
 
 [Typescript](https://www.npmjs.com/package/typescript)
@@ -35,4 +37,6 @@ Para habilitar los tipados con cada paquete, instalar las dependencias de desarr
 [Dotenv](https://www.npmjs.com/package/dotenv)
 
 [CORS](https://www.npmjs.com/package/cors)
+
+[sequelize](https://sequelize.org/)
 

@@ -3,6 +3,7 @@ import cors from 'cors';
 
 
 import * as userRoutes from '../routes/usuario';    // Si hay más exportaciones en el archivo indicado
+import db from '../db/conexion';
                                                     // se pueden llamar con userRoutes.miExportacion
 
 
@@ -18,6 +19,9 @@ class Server {
 
         this.app  = express();
         this.port = process.env.PORT || '8080';
+
+        // DB
+        this.conectarDB();
         
         // Middlewares
         this.middlewares();
@@ -27,7 +31,19 @@ class Server {
 
     }
 
-    // TODO: Conectar base de datos
+    async conectarDB(){
+
+        try {
+            
+            await db.authenticate();
+            console.log('Database online');
+
+        } catch (error) {
+            throw new Error( error );
+            
+        }
+
+    }
 
     middlewares(){
 
