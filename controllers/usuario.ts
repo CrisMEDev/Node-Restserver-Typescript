@@ -115,13 +115,37 @@ export const putUsuario = async( req: Request, res: Response ) => {
 }
 
 // Borrar usuario
-export const deleteUsuario = ( req: Request, res: Response ) => {
+export const deleteUsuario = async( req: Request, res: Response ) => {
 
     const { id } = req.params;
 
-    res.json({
-        msg: 'delte - usuarios'
-    });
+    try {
+
+        const usuario = await Usuario.findByPk( id );
+
+        if ( !usuario ){
+            return res.status(404).json({
+                msg: `No existe un usuario con el id: ${id}`
+            });
+        }
+
+        // Eliminación fisica de la DB
+        // await usuario.destroy();
+
+        // Eliminación lógica
+        await usuario.update({ estado: false });
+
+        res.json({
+            usuario
+        });
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'Hable con el administrador'
+        });
+    }
+
 
 }
 
